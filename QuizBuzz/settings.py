@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'nested_admin',
     'rest_framework',
     'accounts',
+    'knox',
 
 ]
 
@@ -62,6 +63,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'UNICODE_JSON': False
+}
+
 
 ROOT_URLCONF = 'QuizBuzz.urls'
 
