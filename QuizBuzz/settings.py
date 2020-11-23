@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.User'
+
 
 # Application definition
 
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     'quiz',
     'nested_admin',
     'rest_framework',
+    'accounts',
+
 ]
 
 cloudinary.config (
@@ -85,8 +89,10 @@ WSGI_APPLICATION = 'QuizBuzz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'quizzbuzz',
+        'USER': 'nabalayo',
+        'PASSWORD':'karitie',
     }
 }
 
@@ -115,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
