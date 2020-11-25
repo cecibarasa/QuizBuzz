@@ -7,9 +7,9 @@ from .serializers import *
 
 
 class MyQuizListAPI(generics.ListAPIView):
-	# permission_classes = [
-	# 	permissions.IsAuthenticated
-	# ]
+	permission_classes = [
+		permissions.IsAuthenticated
+	]
 	serializer_class = MyQuizListSerializer
 
 	def get_queryset(self, *args, **kwargs):
@@ -27,9 +27,9 @@ class MyQuizListAPI(generics.ListAPIView):
 
 class QuizListAPI(generics.ListAPIView):
 	serializer_class = QuizListSerializer
-	# permission_classes = [
-	# 	permissions.IsAuthenticated
-	# ]
+	permission_classes = [
+		permissions.IsAuthenticated
+	]
 
 	def get_queryset(self, *args, **kwargs):
 		queryset = Quiz.objects.filter(roll_out=True).exclude(quiztaker__user=self.request.user.id)
@@ -46,9 +46,9 @@ class QuizListAPI(generics.ListAPIView):
 
 class QuizDetailAPI(generics.RetrieveAPIView):
 	serializer_class = QuizDetailSerializer
-	# permission_classes = [
-	# 	permissions.IsAuthenticated
-	# ]
+	permission_classes = [
+		permissions.IsAuthenticated
+	]
 
 	def get(self, *args, **kwargs):
 		slug = self.kwargs["slug"]
@@ -71,9 +71,9 @@ class QuizDetailAPI(generics.RetrieveAPIView):
 
 class SaveUsersAnswer(generics.UpdateAPIView):
 	serializer_class = UsersAnswerSerializer
-	# permission_classes = [
-	# 	permissions.IsAuthenticated
-	# ]
+	permission_classes = [
+		permissions.IsAuthenticated
+	]
 
 	def patch(self, request, *args, **kwargs):
 		quiztaker_id = request.data['quiztaker']
@@ -99,9 +99,9 @@ class SaveUsersAnswer(generics.UpdateAPIView):
 
 class SubmitQuizAPI(generics.GenericAPIView):
 	serializer_class = QuizResultSerializer
-	# permission_classes = [
-	# 	permissions.IsAuthenticated
-	# ]
+	permission_classes = [
+		permissions.IsAuthenticated
+	]
 
 	def post(self, request, *args, **kwargs):
 		quiztaker_id = request.data['quiztaker']

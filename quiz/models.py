@@ -1,6 +1,6 @@
 
 from django.conf import settings
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_save
@@ -40,7 +40,7 @@ class Answer(models.Model):
         return self.label 
 
 class QuizTaker(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True, blank=True, related_name='usersanswer')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='usersanswer', null=True, blank=True)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
@@ -51,7 +51,7 @@ class QuizTaker(models.Model):
         return self.email
 
 class UserAnswer(models.Model):
-    quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE)
+    quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE, related_name='quiz_taker')
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
 

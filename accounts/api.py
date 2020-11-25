@@ -35,10 +35,11 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 class UserAPI(generics.RetrieveAPIView):
-	permission_classes = [
+	permission_classes =[
 		permissions.IsAuthenticated
 	]
 	serializer_class = UserSerializer
 
-	def get_object(self):
-		self.request.user
+	def get_queryset(self):
+        
+	    self.request.user
