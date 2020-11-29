@@ -74,7 +74,7 @@ class MyQuizListSerializer(serializers.ModelSerializer):
 
 
 class QuizTakerSerializer(serializers.ModelSerializer):
-	# users_answers_set = UsersAnswerSerializer()
+	# users_answers_set = UsersAnswerSerializer(many=True)
 
 	class Meta:
 		model = QuizTaker

@@ -48,7 +48,7 @@ class QuizTaker(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.email
+        return self.user.name
 
 class UserAnswer(models.Model):
     quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE, related_name='quiz_taker')

@@ -36,7 +36,7 @@ class QuizListAPI(generics.ListAPIView):
 		query = self.request.GET.get("q")
 
 		if query:
-			queryset = queryset.filter(
+			queryset = queryset.all(
 				Q(name__icontains=query) |
 				Q(description__icontains=query)
 			).distinct()
@@ -55,7 +55,7 @@ class QuizDetailAPI(generics.RetrieveAPIView):
 		quiz = get_object_or_404(Quiz, slug=slug)
 		last_question = None
         #new instance of the quiz
-		obj, created = QuizTaker.objects.get_or_create(user=self.request.user.id, quiz=quiz)
+		obj, created = QuizTaker.objects.get_or_create(user=self.request.user, quiz=quiz)
 		if created:
 			for question in Question.objects.filter(quiz=quiz):
 				UserAnswer.objects.create(quiz_taker=obj, question=question)
