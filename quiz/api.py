@@ -18,6 +18,7 @@ class MyQuizListAPI(generics.ListAPIView):
 
 		if query:
 			queryset = queryset.filter(
+				Q(image__icontains=query) |
 				Q(name__icontains=query) |
 				Q(description__icontains=query)
 			).distinct()
@@ -37,6 +38,7 @@ class QuizListAPI(generics.ListAPIView):
 
 		if query:
 			queryset = queryset.all(
+				Q(image__icontains=query) |
 				Q(name__icontains=query) |
 				Q(description__icontains=query)
 			).distinct()

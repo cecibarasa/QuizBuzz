@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.User'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'knox',
+    'corsheaders',
 
 ]
 
@@ -56,6 +59,7 @@ cloudinary.config (
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,3 +145,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR)
+)

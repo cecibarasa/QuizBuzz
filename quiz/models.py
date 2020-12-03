@@ -11,7 +11,7 @@ from django.template.defaultfilters import slugify
 class Quiz(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    image = CloudinaryField('image')
+    image = CloudinaryField('images')
     slug = models.SlugField(blank = True)
     roll_out = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now=True)
